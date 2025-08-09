@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PurePet Nutrition - Testimonials</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="../index.html">PurePet Nutrition</a>
+        <nav>
+          <ul>
+           
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/">Blog</a></li>
+        <li><a href="./Contact.html">Contact</a></li>
+        <li><a href="./Products.html">Products</a></li>
+        <li><a href="./Testimonials.html">Testimonials</a></li>
+        </nav>
+        <div id="hamburger" onclick="toggleNavMenu()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div id="menuBox" style="display: none">
+      <div class="closeBtnContainer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="closeBtn"
+          height="30px"
+          onclick="toggleNavMenu()"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/">Blog</a></li>
+        <li><a href="./Contact.html">Contact</a></li>
+        <li><a href="./Products.html">Products</a></li>
+        <li><a href="./Testimonials.html">Testimonials</a></li>
+      </ul>
+    </div>
+
+    <main>
+      <section class="content">
+        <h1>Customer Testimonials</h1>
+        <div class="testimonial-container" id="testimonial-container">
+          <p class="testimonial">
+            "My dog’s health improved with PurePet food!" - Jane D.
+          </p>
+          <p class="testimonial">
+            "Excellent supplements for my cat’s coat!" - Mark T.
+          </p>
+          <p class="testimonial">
+            "Highly reliable for pet care needs." - Sarah L.
+          </p>
+        </div>
+        <button onclick="nextTestimonial()">Next Testimonial</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; <span id="year"></span> PurePet Nutrition. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PurePet Nutrition - Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="./index.html">PurePet Nutrition</a>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="./pages/Blog.html">Blog</a></li>
+            <li><a href="./pages/Contact.html">Contact</a></li>
+            <li><a href="./pages/Products.html">Products</a></li>
+            <li><a href="./pages/Testimonials.html">Testimonials</a></li>
+          </ul>
+        </nav>
+        <div id="hamburger" onclick="toggleNavMenu()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div id="menuBox" style="display: none">
+      <div class="closeBtnContainer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="closeBtn"
+          height="30px"
+          onclick="toggleNavMenu()"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="./pages/Blog.html">Blog</a></li>
+        <li><a href="./pages/Contact.html">Contact</a></li>
+        <li><a href="./pages/Products.html">Products</a></li>
+        <li><a href="./pages/Testimonials.html">Testimonials</a></li>
+      </ul>
+    </div>
+
+    <main class="homeMain">
+      <section class="homeSection">
+        <img src="./public/images/main.png" alt="petImage" class="heroImage" />
+        <div class="hero">
+          <h1>Welcome to PurePet Nutrition</h1>
+          <p>
+            We specialize in premium organic pet foods and dietary supplements,
+            crafted with natural ingredients to promote your pet's health and
+            longevity.
+          </p>
+        </div>
+      </section>
+      <p class="description">
+        Explore our <a href="./pages/Products.html">product range</a> or stay
+        informed with our <a href="./pages/Blog.html">expert blog</a>.
+      </p>
+    </main>
+
+    <footer>
+      <p>&copy; <span></span> PurePet Nutrition. All rights reserved.</p>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
