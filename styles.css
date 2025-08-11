@@ -62,6 +62,10 @@ button {
     transition: background-color 0.3s ease;
 }
 
+button:hover {
+    background-color: #2980b9;
+}
+
 main {
     width: 80%;
     margin: 30px auto;
@@ -168,8 +172,6 @@ display: flex;
     text-align: center;
     order: 2;
     
-    /* border: 2px solid red; */
-
     h1{
         font-size: 45px;
     }
@@ -194,12 +196,38 @@ display: flex;
 
 .description{
     text-align: center;
-    /* border: 2px solid black; */
 }
-
-button:hover {
-    background-color: #2980b9;
+/* -------------------------------------------------index.html----------------------- */
+/* -------------------------------------------------blog.html----------------------- */
+.blogCard{
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
+    p{
+        font-size: 15px;
+        padding: 0px;
+    }
 }
+.badge{
+font-size: 12px;
+border: 1px solid;
+border-radius: 8px;
+padding: 5px;   
+background: lightseagreen; 
+color: white;
+}
+.cardContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);;
+    gap: 20px;
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}
+/* -------------------------------------------------blog.html----------------------- */
 
 .product-list {
     display: grid;
@@ -250,20 +278,44 @@ footer {
     margin-top: 30px;
 }
 
+/* -------------------------------------------------blog.html----------------------- */
 
+/* -------------------------------------------------contact.html----------------------- */
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    width: 80%;
+}
+
+/* -------------------------------------------------contact.html----------------------- */
+
+
+/* -------------------------------------------------product.html----------------------- */
+
+
+/* -------------------------------------------------products.html----------------------- */
 
 
 /* -------------------------------------------media query----------------------------- */
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-    #menuBox {
-        width: 100%;
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+    .homeSection{
+        flex-direction: column;
+    }
+    .hero{
+        order:1
+    }
+    .heroImage{
+        order:2
+    }
+    .cardContainer{
+    grid-template-columns: repeat(3, 1fr);;
     }
 }
 
@@ -277,17 +329,31 @@ footer {
 nav{
     display: none;
 }
+.blogCard{
+    height: auto;
+}
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
-    .homeSection{
-        flex-direction: column;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    #menuBox {
+        width: 100%;
     }
-    .hero{
-        order:1
-    }
-    .heroImage{
-        order:2
+    .cardContainer{
+    grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+     .cardContainer{
+    grid-template-columns: 1fr;
+    }
+    .blogCard{
+    height: auto;
+}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {}
+

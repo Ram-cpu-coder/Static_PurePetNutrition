@@ -15,9 +15,9 @@
            
         <li><a href="../index.html">Home</a></li>
         <li><a href="/">Blog</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
         <li><a href="./Products.html">Products</a></li>
         <li><a href="./Testimonials.html">Testimonials</a></li>
+        <li><a href="./Contact.html">Contact</a></li>
         </nav>
         <div id="hamburger" onclick="toggleNavMenu()">
           <svg
@@ -60,33 +60,23 @@
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="/">Blog</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
         <li><a href="./Products.html">Products</a></li>
         <li><a href="./Testimonials.html">Testimonials</a></li>
+        <li><a href="./Contact.html">Contact</a></li>
       </ul>
     </div>
 
     <main>
       <section class="content">
-        <h1>Our Product Range</h1>
+        <h1 style="text-align: center;">Our Product Range</h1>
         <select id="category" onchange="filterProducts()">
           <option value="all">All Categories</option>
           <option value="food">Pet Food</option>
           <option value="supplements">Supplements</option>
         </select>
-        <div class="product-list" id="product-list">
-          <div class="product" data-category="food">
-            Organic Kibble - Premium natural grains and meats.
-          </div>
-          <div class="product" data-category="food">
-            Organic Wet Food - Hydrating, nutrient-rich option.
-          </div>
-          <div class="product" data-category="supplements">
-            Joint Support Vitamins - Enhances mobility.
-          </div>
-          <div class="product" data-category="supplements">
-            Coat Care Minerals - Promotes shiny fur.
-          </div>
+
+        <div id="productList" class="cardContainer">
+          
         </div>
       </section>
     </main>
@@ -98,5 +88,6 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script src="../scripts/productsScript.js"></script>
   </body>
 </html>
