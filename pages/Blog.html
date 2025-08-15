@@ -3,23 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore expert tips and insights on pet nutrition, health, and wellness from PurePet Nutrition’s blog."
+    />
     <title>PurePet Nutrition - Blog</title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="navbar">
-        <a class="logo" href="../index.html">PurePet Nutrition</a>
-        <nav>
+        <a class="logo" href="../index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-           
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="./Products.html">Products</a></li>
-        <li><a href="./Testimonials.html">Testimonials</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./Blog.html" aria-current="page">Blog</a></li>
+            <li><a href="./Products.html">Products</a></li>
+            <li><a href="./Testimonials.html">Testimonials</a></li>
+            <li><a href="./Contact.html">Contact</a></li>
+          </ul>
         </nav>
-        <div id="hamburger" onclick="toggleNavMenu()">
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,6 +37,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -34,46 +45,83 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </header>
 
-    <div id="menuBox" style="display: none">
+    <div
+      id="menuBox"
+      style="display: none"
+      role="dialog"
+      aria-label="Mobile navigation menu"
+    >
       <div class="closeBtnContainer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <button
           class="closeBtn"
-          height="30px"
+          aria-label="Close navigation menu"
           onclick="toggleNavMenu()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
+        <li><a href="./Blog.html" aria-current="page">Blog</a></li>
         <li><a href="./Products.html">Products</a></li>
         <li><a href="./Testimonials.html">Testimonials</a></li>
         <li><a href="./Contact.html">Contact</a></li>
       </ul>
     </div>
 
-    <main>
-      <h1 style="text-align: center;">Blogs</h1>
-      <section id="blogsContainer" class="cardContainer"></section>
+    <main role="main">
+      <section class="blogHeader" aria-labelledby="blog-heading">
+        <img
+          src="../public/images/blog-img.png"
+          alt="Happy pet with PurePet Nutrition products"
+          class="blogImg"
+        />
+        <h1 id="blog-heading">Pet Wellness Blog</h1>
+        <p>
+          Expert tips and insights on pet nutrition, health, and wellness from
+          PurePet Nutrition.
+        </p>
+      </section>
+      <section class="blogFilter" aria-label="Filter blogs by category">
+        <label for="blogFilter" class="sr-only">Filter blogs by category</label>
+        <select id="blogFilter" onchange="filterBlogs()">
+          <option value="all">All Categories</option>
+          <option value="Pet Nutrition">Pet Nutrition</option>
+          <option value="Ingredient Spotlight">Ingredient Spotlight</option>
+          <option value="Health & Wellness">Health & Wellness</option>
+          <option value="Feeding Guide">Feeding Guide</option>
+          <option value="Behind the Brand">Behind the Brand</option>
+        </select>
+      </section>
+      <section
+        id="blogsContainer"
+        class="cardContainer"
+        aria-label="Blog posts"
+      ></section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <p>
-        &copy; <span></span> PurePet Nutrition. All rights reserved.
+        &copy; <span id="currentYear"></span> PurePet Nutrition. All rights
+        reserved.
       </p>
     </footer>
 

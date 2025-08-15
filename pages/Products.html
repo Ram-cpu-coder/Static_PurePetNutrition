@@ -3,23 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Discover our premium organic pet food and supplements at PurePet Nutrition."
+    />
     <title>PurePet Nutrition - Products</title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="navbar">
-        <a class="logo" href="../index.html">PurePet Nutrition</a>
-        <nav>
+        <a class="logo" href="../index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-           
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="./Products.html">Products</a></li>
-        <li><a href="./Testimonials.html">Testimonials</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./Blog.html">Blog</a></li>
+            <li><a href="./Products.html" aria-current="page">Products</a></li>
+            <li><a href="./Testimonials.html">Testimonials</a></li>
+            <li><a href="./Contact.html">Contact</a></li>
+          </ul>
         </nav>
-        <div id="hamburger" onclick="toggleNavMenu()">
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,6 +37,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -34,54 +45,74 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </header>
 
-    <div id="menuBox" style="display: none">
+    <div
+      id="menuBox"
+      style="display: none"
+      role="dialog"
+      aria-label="Mobile navigation menu"
+    >
       <div class="closeBtnContainer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <button
           class="closeBtn"
-          height="30px"
+          aria-label="Close navigation menu"
           onclick="toggleNavMenu()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="./Products.html">Products</a></li>
+        <li><a href="./Blog.html">Blog</a></li>
+        <li><a href="./Products.html" aria-current="page">Products</a></li>
         <li><a href="./Testimonials.html">Testimonials</a></li>
         <li><a href="./Contact.html">Contact</a></li>
       </ul>
     </div>
 
-    <main>
-      <section class="content">
-        <h1 style="text-align: center;">Our Product Range</h1>
+    <main role="main">
+      <section class="productHeader" aria-labelledby="product-heading">
+        <h1 id="product-heading">Our Product Range</h1>
+        <p>
+          Explore our premium organic pet food and supplements crafted for your
+          pet’s health.
+        </p>
+      </section>
+      <section class="productFilter" aria-label="Filter products by category">
+        <label for="category" class="sr-only"
+          >Filter products by category</label
+        >
         <select id="category" onchange="filterProducts()">
           <option value="all">All Categories</option>
           <option value="food">Pet Food</option>
           <option value="supplements">Supplements</option>
         </select>
-
-        <div id="productList" class="cardContainer">
-          
-        </div>
       </section>
+      <section
+        id="productList"
+        class="cardContainer"
+        aria-label="Product listings"
+      ></section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <p>
         &copy; <span id="year"></span> PurePet Nutrition. All rights reserved.
       </p>

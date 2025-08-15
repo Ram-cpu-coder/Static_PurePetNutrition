@@ -1,64 +1,59 @@
-
-// products page 
-const productsArr = [
+const productArr = [
     {
-        "id": 1,
-        "name": "Wireless Headphones",
-        "description": "High-quality Bluetooth headphones with noise cancellation.",
-        "price": 99.99,
-        "image": "https://via.placeholder.com/200x200.png?text=Headphones",
-        "category": "Electronics",
-        "stock": 15
+        "name": "Organic Chicken & Rice Dog Food",
+        "category": "food",
+        "description": "Premium organic chicken and rice blend for optimal dog health.",
+        "image": "../public/images/product1.webp",
+        "price": "$29.99"
     },
     {
-        "id": 2,
-        "name": "Gaming Mouse",
-        "description": "Ergonomic gaming mouse with customizable RGB lighting.",
-        "price": 49.99,
-        "image": "https://via.placeholder.com/200x200.png?text=Gaming+Mouse",
-        "category": "Electronics",
-        "stock": 30
+        "name": "Organic Salmon Cat Food",
+        "category": "food",
+        "description": "Rich organic salmon formula for cats with sensitive stomachs.",
+        "image": "../public/images/product2.png",
+        "price": "$34.99"
     },
     {
-        "id": 3,
-        "name": "Smartwatch",
-        "description": "Fitness tracking smartwatch with heart rate monitor.",
-        "price": 149.99,
-        "image": "https://via.placeholder.com/200x200.png?text=Smartwatch",
-        "category": "Wearables",
-        "stock": 20
+        "name": "Omega-3 Fish Oil Supplement",
+        "category": "supplements",
+        "description": "Supports coat, joints, and heart health with natural omega-3s.",
+        "image": "../public/images/product3.png",
+        "price": "$19.99"
     },
     {
-        "id": 4,
-        "name": "Sneakers",
-        "description": "Comfortable running sneakers for daily wear.",
-        "price": 79.99,
-        "image": "https://via.placeholder.com/200x200.png?text=Sneakers",
-        "category": "Footwear",
-        "stock": 25
-    },
-    {
-        "id": 5,
-        "name": "Backpack",
-        "description": "Durable waterproof backpack with laptop compartment.",
-        "price": 59.99,
-        "image": "https://via.placeholder.com/200x200.png?text=Backpack",
-        "category": "Accessories",
-        "stock": 40
+        "name": "Probiotic Digestive Support",
+        "category": "supplements",
+        "description": "Enhances digestion and immune system for all pets.",
+        "image": "../public/images/product4.png",
+        "price": "$24.99"
     }
 ];
 
-const productList = document.getElementById("productList");
-const productHTML = productsArr.map((item) => {
-    return `<a href ="https://dev.to/">
-    <article class="blogCard">
-        <h2>${item.name}</h2>
-        <span class="badge">${item.category}</span>
-        <p>
-            ${item.description}
-        </p>
-    </article>
-    </a>`
-}).join("")
+function renderProducts(category = "all") {
+    const productList = document.getElementById("productList");
+    if (!productList) return; // Exit if container not found (e.g., on other pages)
 
-productList.innerHTML = productHTML;
+    const filteredProducts = category === "all" ? productArr : productArr.filter(product => product.category === category);
+
+    const productHTML = filteredProducts.map((item) => {
+        return `<a href="#" aria-label="View details for ${item.name}">
+            <article class="productCard" data-category="${item.category}">
+                <img src="${item.image}" alt="${item.name} image" class="productImage" />
+                <h2>${item.name}</h2>
+                <p>${item.description}</p>
+                <span class="price">${item.price}</span>
+            </article>
+        </a>`;
+    }).join("");
+
+    productList.innerHTML = productHTML;
+}
+
+function filterProducts() {
+    const categorySelect = document.getElementById("category");
+    const selectedCategory = categorySelect.value;
+    renderProducts(selectedCategory);
+}
+
+// Initialize product rendering on page load
+document.addEventListener("DOMContentLoaded", () => renderProducts());

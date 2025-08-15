@@ -3,23 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Read real customer testimonials about PurePet Nutrition products."
+    />
     <title>PurePet Nutrition - Testimonials</title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="navbar">
-        <a class="logo" href="../index.html">PurePet Nutrition</a>
-        <nav>
+        <a class="logo" href="../index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-           
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="./Products.html">Products</a></li>
-        <li><a href="./Testimonials.html">Testimonials</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./Blog.html">Blog</a></li>
+            <li><a href="./Products.html">Products</a></li>
+            <li>
+              <a href="./Testimonials.html" aria-current="page">Testimonials</a>
+            </li>
+            <li><a href="./Contact.html">Contact</a></li>
+          </ul>
         </nav>
-        <div id="hamburger" onclick="toggleNavMenu()">
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,6 +39,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -34,62 +47,79 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </header>
 
-    <div id="menuBox" style="display: none">
+    <div
+      id="menuBox"
+      style="display: none"
+      role="dialog"
+      aria-label="Mobile navigation menu"
+    >
       <div class="closeBtnContainer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <button
           class="closeBtn"
-          height="30px"
+          aria-label="Close navigation menu"
           onclick="toggleNavMenu()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
+        <li><a href="./Blog.html">Blog</a></li>
         <li><a href="./Products.html">Products</a></li>
-        <li><a href="./Testimonials.html">Testimonials</a></li>
+        <li>
+          <a href="./Testimonials.html" aria-current="page">Testimonials</a>
+        </li>
         <li><a href="./Contact.html">Contact</a></li>
       </ul>
     </div>
 
-    <main>
-      <section class="content">
-        <h1>Customer Testimonials</h1>
-        <div class="testimonial-container" id="testimonial-container">
-          <p class="testimonial">
-            "My dog’s health improved with PurePet food!" - Jane D.
-          </p>
-          <p class="testimonial">
-            "Excellent supplements for my cat’s coat!" - Mark T.
-          </p>
-          <p class="testimonial">
-            "Highly reliable for pet care needs." - Sarah L.
-          </p>
-        </div>
-        <button onclick="nextTestimonial()">Next Testimonial</button>
+    <main role="main">
+      <section class="testimonialHeader" aria-labelledby="testimonial-heading">
+        <img
+          src="../public/images/testimonialImg.png"
+          alt="Happy pets and customers"
+          class="testimonialImg"
+        />
+        <h1 id="testimonial-heading">Customer Testimonials</h1>
+        <p>Discover what our customers say about PurePet Nutrition.</p>
+      </section>
+      <section class="testimonialContent" aria-label="Customer testimonials">
+        <div class="testimonial-container" id="testimonial-container"></div>
+        <button
+          class="next-btn"
+          onclick="nextTestimonial()"
+          aria-label="Show next testimonial"
+        >
+          Next Testimonial
+        </button>
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <p>
         &copy; <span id="year"></span> PurePet Nutrition. All rights reserved.
       </p>
     </footer>
 
     <script src="../script.js"></script>
+    <script src="../scripts/testimonialsScript.js"></script>
   </body>
 </html>

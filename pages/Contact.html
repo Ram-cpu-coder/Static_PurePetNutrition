@@ -3,23 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Get in touch with PurePet Nutrition for support or inquiries."
+    />
     <title>PurePet Nutrition - Contact</title>
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="navbar">
-        <a class="logo" href="../index.html">PurePet Nutrition</a>
-        <nav>
+        <a class="logo" href="../index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-           
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="./Products.html">Products</a></li>
-        <li><a href="./Testimonials.html">Testimonials</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./Blog.html">Blog</a></li>
+            <li><a href="./Products.html">Products</a></li>
+            <li><a href="./Testimonials.html">Testimonials</a></li>
+            <li><a href="./Contact.html" aria-current="page">Contact</a></li>
+          </ul>
         </nav>
-        <div id="hamburger" onclick="toggleNavMenu()">
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,6 +37,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -34,62 +45,115 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </header>
 
-    <div id="menuBox" style="display: none">
+    <div
+      id="menuBox"
+      style="display: none"
+      role="dialog"
+      aria-label="Mobile navigation menu"
+    >
       <div class="closeBtnContainer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <button
           class="closeBtn"
-          height="30px"
+          aria-label="Close navigation menu"
           onclick="toggleNavMenu()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
       <ul>
         <li><a href="../index.html">Home</a></li>
-        <li><a href="/">Blog</a></li>
+        <li><a href="./Blog.html">Blog</a></li>
         <li><a href="./Products.html">Products</a></li>
         <li><a href="./Testimonials.html">Testimonials</a></li>
-        <li><a href="./Contact.html">Contact</a></li>
+        <li><a href="./Contact.html" aria-current="page">Contact</a></li>
       </ul>
     </div>
 
-    <main>
-      <section class="content">
-        <h1 style="text-align: center;">Contact Us</h1>
-        <form>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea
-          >
-          <button type="submit">Submit</button>
+    <main role="main">
+      <section class="contactHeader" aria-labelledby="contact-heading">
+        <h1 id="contact-heading">Contact Us</h1>
+        <p>Get in touch with us for support or inquiries about our products.</p>
+      </section>
+      <section class="contactForm" aria-label="Contact form">
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              aria-required="true"
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
         </form>
-        <p>Email: info@purepetnutrition.com | Phone: (123) 456-7890</p>
-        <p style="margin: 0;">Address: 123 Organic Lane, Pet City, PC 12345</p>
+        <div id="formFeedback" class="form-feedback" role="alert"></div>
+      </section>
+      <section class="mapContainer">
+        <img
+          src="../public/images/map.png"
+          alt="Location map for PurePet Nutrition"
+          class="contactImage"
+        />
+      </section>
+      <section class="contactDetails" aria-label="Contact information">
+        <p>
+          Email:
+          <a href="mailto:info@purepetnutrition.com"
+            >info@purepetnutrition.com</a
+          >
+          | Phone: (123) 456-7890
+        </p>
+        <p>Address: 123 Organic Lane, Pet City, PC 12345</p>
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <p>
         &copy; <span id="year"></span> PurePet Nutrition. All rights reserved.
       </p>
     </footer>
 
     <script src="../script.js"></script>
+    <script src="../scripts/contactScript.js"></script>
   </body>
 </html>

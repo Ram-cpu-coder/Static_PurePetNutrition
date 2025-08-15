@@ -3,23 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PurePet Nutrition - Home</title>
+    <meta
+      name="description"
+      content="PurePet Nutrition offers premium organic pet food and supplements for your pet's health and vitality."
+    />
+    <title>PurePet Nutrition - Premium Organic Pet Food</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
+    <header role="banner">
       <div class="navbar">
-        <a class="logo" href="./index.html">PurePet Nutrition</a>
-        <nav>
+        <a class="logo" href="./index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
             <li><a href="./pages/Blog.html">Blog</a></li>
             <li><a href="./pages/Products.html">Products</a></li>
             <li><a href="./pages/Testimonials.html">Testimonials</a></li>
             <li><a href="./pages/Contact.html">Contact</a></li>
           </ul>
         </nav>
-        <div id="hamburger" onclick="toggleNavMenu()">
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,6 +37,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -34,31 +45,41 @@
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </header>
 
-    <div id="menuBox" style="display: none">
+    <div
+      id="menuBox"
+      style="display: none"
+      role="dialog"
+      aria-label="Mobile navigation menu"
+    >
       <div class="closeBtnContainer">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <button
           class="closeBtn"
-          height="30px"
+          aria-label="Close navigation menu"
           onclick="toggleNavMenu()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="./index.html">Home</a></li>
         <li><a href="./pages/Blog.html">Blog</a></li>
         <li><a href="./pages/Products.html">Products</a></li>
         <li><a href="./pages/Testimonials.html">Testimonials</a></li>
@@ -66,26 +87,107 @@
       </ul>
     </div>
 
-    <main class="homeMain">
-      <section class="homeSection">
-        <img src="./public/images/main.png" alt="petImage" class="heroImage" />
+    <main class="homeMain" role="main">
+      <section class="homeSection" aria-labelledby="hero-heading">
         <div class="hero">
-          <h1>Welcome to PurePet Nutrition</h1>
+          <h1 id="hero-heading">Welcome to PurePet Nutrition</h1>
           <p>
-            We specialize in premium organic pet foods and dietary supplements,
-            crafted with natural ingredients to promote your pet's health and
-            longevity.
+            Discover premium organic pet food and supplements crafted with
+            natural, sustainable ingredients to ensure your pet’s health,
+            vitality, and happiness.
           </p>
+          <a href="./pages/Products.html" class="cta-button">Shop Now</a>
+        </div>
+        <div class="hero-image-container">
+          <img
+            src="./public/images/main.png"
+            alt="Healthy pet enjoying PurePet Nutrition organic food"
+            class="heroImage"
+          />
         </div>
       </section>
       <p class="description">
-        Explore our <a href="./pages/Products.html">product range</a> or stay
-        informed with our <a href="./pages/Blog.html">expert blog</a>.
+        Learn more about pet wellness with our
+        <a href="./pages/Blog.html">&nbsp;expert blog&nbsp;</a> or explore our
+        <a href="./pages/Products.html">&nbsp;product range</a>.
       </p>
     </main>
 
-    <footer>
-      <p>&copy; <span></span> PurePet Nutrition. All rights reserved.</p>
+    <section class="gallerySection" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading">Our PurePet Moments</h2>
+      <p>
+        Explore the joy and health of pets thriving on our organic nutrition.
+      </p>
+      <div class="gallery">
+        <figure class="gallery-item">
+          <img
+            src="./public/images/pet1.png"
+            alt="Happy dog eating PurePet Nutrition food"
+            class="thumbnail"
+            onclick="enlargeImage(this)"
+            role="button"
+            aria-label="Enlarge image of happy dog"
+          />
+          <figcaption>Jacky</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="./public/images/pet2.png"
+            alt="Cat enjoying PurePet Nutrition supplement"
+            class="thumbnail"
+            onclick="enlargeImage(this)"
+            role="button"
+            aria-label="Enlarge image of cat"
+          />
+          <figcaption>Paul</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="./public/images/pet3.png"
+            alt="Pet with shiny coat from PurePet Nutrition"
+            class="thumbnail"
+            onclick="enlargeImage(this)"
+            role="button"
+            aria-label="Enlarge image of pet with shiny coat"
+          />
+          <figcaption>Meow</figcaption>
+        </figure>
+      </div>
+      <div
+        class="enlarged-image-container"
+        id="enlargedImageContainer"
+        style="display: none"
+      >
+        <img src="" alt="Enlarged pet image" id="enlargedImage" />
+        <button
+          class="close-enlarged"
+          onclick="closeEnlargedImage()"
+          aria-label="Close enlarged image"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            height="30px"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <footer role="contentinfo">
+      <p>
+        &copy; <span id="currentYear"></span> PurePet Nutrition. All rights
+        reserved.
+      </p>
     </footer>
     <script src="./script.js"></script>
   </body>

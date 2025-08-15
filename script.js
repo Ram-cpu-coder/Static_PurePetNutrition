@@ -1,4 +1,4 @@
-// hambuger in the navbar
+// Toggle navigation menu for mobile
 function toggleNavMenu() {
     const menuBox = document.getElementById("menuBox");
     const currentDisplay = window.getComputedStyle(menuBox).display;
@@ -11,6 +11,22 @@ function toggleNavMenu() {
     }
 }
 
+// Set current year in footer
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+// Image enlarging
+function enlargeImage(imgElement) {
+    const enlargedContainer = document.getElementById("enlargedImageContainer");
+    const enlargedImage = document.getElementById("enlargedImage");
+    enlargedImage.src = imgElement.src;
+    enlargedImage.alt = imgElement.alt;
+    enlargedContainer.style.display = "flex";
+}
+
+function closeEnlargedImage() {
+    const enlargedContainer = document.getElementById("enlargedImageContainer");
+    enlargedContainer.style.display = "none";
+}
 
 // blog page
 const blogArr = [
@@ -64,16 +80,56 @@ const blogArr = [
         "category": "Behind the Brand",
         "description": "Our commitment to sustainability and ingredient transparency."
     }
-]
-const blogsContainer = document.getElementById("blogsContainer");
-const blogHTML = blogArr.map((item) => {
-    return `<a href ="https://dev.to/"><article class="blogCard">
-        <h2>${item.title}</h2>
-        <span class="badge">${item.category}</span>
-        <p>
-            ${item.description}
-        </p>
-    </article></a>`
-}).join("")
+];
 
-blogsContainer.innerHTML = blogHTML;
+function renderBlogs(category = "all") {
+    const blogsContainer = document.getElementById("blogsContainer");
+    if (!blogsContainer) return;
+
+    const filteredBlogs = category === "all" ? blogArr : blogArr.filter(blog => blog.category === category);
+
+    const blogHTML = filteredBlogs.map((item) => {
+        return `<a href="https://dev.to/" aria-label="Read more about ${item.title}">
+            <article class="blogCard" data-category="${item.category}">
+                <h2>${item.title}</h2>
+                <span class="badge">${item.category}</span>
+                <p>${item.description}</p>
+            </article>
+        </a>`;
+    }).join("");
+
+    blogsContainer.innerHTML = blogHTML;
+}
+
+function filterBlogs() {
+    const filterSelect = document.getElementById("blogFilter");
+    const selectedCategory = filterSelect.value;
+    renderBlogs(selectedCategory);
+}
+
+function toggleNavMenu() {
+    const menuBox = document.getElementById("menuBox");
+    if (menuBox.style.display === "none" || window.getComputedStyle(menuBox).display === "none") {
+        menuBox.style.display = "block";
+    } else {
+        menuBox.style.display = "none";
+    }
+}
+
+function enlargeImage(imgElement) {
+    const enlargedContainer = document.getElementById("enlargedImageContainer");
+    const enlargedImage = document.getElementById("enlargedImage");
+    enlargedImage.src = imgElement.src;
+    enlargedImage.alt = imgElement.alt;
+    enlargedContainer.style.display = "flex";
+}
+
+function closeEnlargedImage() {
+    const enlargedContainer = document.getElementById("enlargedImageContainer");
+    enlargedContainer.style.display = "none";
+}
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+// Initialize blog rendering on page load
+document.addEventListener("DOMContentLoaded", () => renderBlogs());
