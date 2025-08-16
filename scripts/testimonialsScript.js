@@ -17,7 +17,7 @@ let currentIndex = 0;
 
 function renderTestimonial(index) {
     const container = document.getElementById("testimonial-container");
-    if (!container) return; // Exit if container not found (e.g., on other pages)
+    if (!container) return;
 
     container.innerHTML = `<p class="testimonial active">${testimonials[index].text} <strong>- ${testimonials[index].author}</strong></p>`;
 }
