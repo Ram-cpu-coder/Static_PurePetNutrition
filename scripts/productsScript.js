@@ -1,59 +1,75 @@
-const productArr = [
-    {
-        "name": "Organic Chicken & Rice Dog Food",
-        "category": "food",
-        "description": "Premium organic chicken and rice blend for optimal dog health.",
-        "image": "../public/images/product1.webp",
-        "price": "$29.99"
-    },
-    {
-        "name": "Organic Salmon Cat Food",
-        "category": "food",
-        "description": "Rich organic salmon formula for cats with sensitive stomachs.",
-        "image": "../public/images/product2.png",
-        "price": "$34.99"
-    },
-    {
-        "name": "Omega-3 Fish Oil Supplement",
-        "category": "supplements",
-        "description": "Supports coat, joints, and heart health with natural omega-3s.",
-        "image": "../public/images/product3.png",
-        "price": "$19.99"
-    },
-    {
-        "name": "Probiotic Digestive Support",
-        "category": "supplements",
-        "description": "Enhances digestion and immune system for all pets.",
-        "image": "../public/images/product4.png",
-        "price": "$24.99"
+async function fetchProducts(category = "all") {
+    try {
+        const response = await fetch("https://purepetnutrition-gjecgvaxgmgtcfcc.australiaeast-01.azurewebsites.net/api/products.php");
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const products = await response.json();
+
+        const filtered = category === "all"
+            ? products
+            : products.filter(item => item.category === category);
+
+        renderProducts(filtered);
+    } catch (error) {
+        console.error("Error fetching products:", error);
     }
-];
+}
 
-function renderProducts(category = "all") {
+function renderProducts(productArr) {
     const productList = document.getElementById("productList");
-    if (!productList) return; // Exit if container not found (e.g., on other pages)
+    if (!productList) {
+        console.error("productList element not found");
+        return;
+    }
 
-    const filteredProducts = category === "all" ? productArr : productArr.filter(product => product.category === category);
+    if (productArr.length === 0) {
+        productList.innerHTML = "<p>No products found.</p>";
+        return;
+    }
 
-    const productHTML = filteredProducts.map((item) => {
-        return `<a href="#" aria-label="View details for ${item.name}">
-            <article class="productCard" data-category="${item.category}">
-                <img src="${item.image}" alt="${item.name} image" class="productImage" />
-                <h2>${item.name}</h2>
-                <p>${item.description}</p>
-                <span class="price">${item.price}</span>
-            </article>
-        </a>`;
-    }).join("");
+    const productHTML = productArr.map(item => `
+    <article class="productCard" data-category="${item.category}">
+      <img src="${item.image}" alt="${item.name} image" class="productImage" />
+      <h2>${item.name}</h2>
+      <p>${item.description}</p>
+      <span class="price">$${parseFloat(item.price).toFixed(2)}</span>
+      <button onclick='addToCart(${JSON.stringify(item)})'>Add to Cart</button>
+    </article>
+  `).join("");
 
     productList.innerHTML = productHTML;
 }
 
-function filterProducts() {
-    const categorySelect = document.getElementById("category");
-    const selectedCategory = categorySelect.value;
-    renderProducts(selectedCategory);
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
 }
 
-// Initialize product rendering on page load
-document.addEventListener("DOMContentLoaded", () => renderProducts());
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) cartCount.textContent = cart.length;
+}
+
+function filterProducts() {
+    const categorySelect = document.getElementById("category");
+    if (!categorySelect) {
+        console.error("category element not found");
+        return;
+    }
+    const selectedCategory = categorySelect.value;
+    fetchProducts(selectedCategory);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchProducts();
+    updateCartCount();
+
+    const cartButton = document.getElementById("cartButton");
+    if (cartButton) {
+        cartButton.addEventListener("click", () => {
+            window.location.href = "./Cart.html";
+        });
+    }
+});

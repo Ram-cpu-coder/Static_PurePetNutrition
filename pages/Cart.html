@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PurePet Nutrition - Cart</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <div class="navbar">
+        <a class="logo" href="../index.html" aria-label="PurePet Nutrition Home"
+          >PurePet Nutrition</a
+        >
+        <nav role="navigation" aria-label="Main navigation">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./Blog.html">Blog</a></li>
+            <li><a href="./Products.html">Products</a></li>
+            <li><a href="./Testimonials.html">Testimonials</a></li>
+            <li><a href="./Contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main role="main">
+      <section class="cartHeader">
+        <h1>Your Cart</h1>
+        <p>Review your items and proceed to purchase.</p>
+      </section>
+
+      <section id="cartItems" aria-label="Cart items">
+        <table class="cartTable">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="cartTableBody"></tbody>
+        </table>
+      </section>
+
+      <section class="cartSummary">
+        <h2>Total: $<span id="cartTotal">0.00</span></h2>
+        <button id="purchaseBtn">Purchase</button>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <p>
+        &copy; <span id="year"></span> PurePet Nutrition. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="../scripts/cartScript.js"></script>
+  </body>
+</html>

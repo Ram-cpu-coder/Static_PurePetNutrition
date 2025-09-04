@@ -1,31 +1,60 @@
-const testimonials = [
-    {
-        "text": "My dog’s health improved with PurePet food! The organic ingredients made a noticeable difference in his energy levels.",
-        "author": "Jane D."
-    },
-    {
-        "text": "Excellent supplements for my cat’s coat! Her fur is shinier than ever since we started using PurePet.",
-        "author": "Mark T."
-    },
-    {
-        "text": "Highly reliable for pet care needs. I trust PurePet for all my pet’s nutritional requirements.",
-        "author": "Sarah L."
-    }
-];
-
+let testimonials = [];
 let currentIndex = 0;
+
+async function fetchTestimonials() {
+    try {
+        const response = await fetch("https://purepetnutrition-gjecgvaxgmgtcfcc.australiaeast-01.azurewebsites.net/api/testimonials.php");
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+
+        // Map product-style data into testimonial format
+        testimonials = data.map(item => ({
+            text: item.description,
+            author: item.name
+        })).filter(t => t.text && t.author); // filter out empty entries
+
+        if (testimonials.length > 0) {
+            renderTestimonial(currentIndex);
+            startAutoRotation(); // 🔁 Start rotating testimonials
+        } else {
+            displayFallback();
+        }
+    } catch (error) {
+        console.error("Error fetching testimonials:", error);
+        displayFallback();
+    }
+}
 
 function renderTestimonial(index) {
     const container = document.getElementById("testimonial-container");
-    if (!container) return;
+    if (!container || testimonials.length === 0) return;
 
-    container.innerHTML = `<p class="testimonial active">${testimonials[index].text} <strong>- ${testimonials[index].author}</strong></p>`;
+    const { text, author } = testimonials[index];
+    container.innerHTML = `
+    <div class="testimonial active">
+      <p>"${text}"</p>
+      <p><strong>- ${author}</strong></p>
+    </div>
+  `;
 }
 
 function nextTestimonial() {
+    if (testimonials.length === 0) return;
     currentIndex = (currentIndex + 1) % testimonials.length;
     renderTestimonial(currentIndex);
 }
 
-// Initialize first testimonial on page load
-document.addEventListener("DOMContentLoaded", () => renderTestimonial(currentIndex));
+function displayFallback() {
+    const container = document.getElementById("testimonial-container");
+    if (container) {
+        container.innerHTML = `<p class="testimonial active">No testimonials available at the moment.</p>`;
+    }
+}
+
+function startAutoRotation() {
+    setInterval(() => {
+        nextTestimonial();
+    }, 5000); // ⏱ Rotate every 5 seconds
+}
+
+document.addEventListener("DOMContentLoaded", () => fetchTestimonials());
