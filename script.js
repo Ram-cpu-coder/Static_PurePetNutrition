@@ -71,15 +71,9 @@ function renderBlogs(blogArr) {
             return `
             <a href="blog.html?id=${item.id}" aria-label="Read more about ${item.title}">
               <article class="blogCard" data-category="${item.category}">
-                <img src="${item.image ?? "https://via.placeholder.com/300x200?text=No+Image"
-                }" alt="${item.title}" class="blogThumbnail" />
                 <h2>${item.title}</h2>
                 <span class="badge">${item.category}</span>
                 <p>${item.description}</p>
-                <p class="blogMeta">Published on ${item.created_at
-                    ? new Date(item.created_at).toLocaleDateString()
-                    : "Unknown date"
-                }</p>
               </article>
             </a>`;
         })
@@ -87,6 +81,7 @@ function renderBlogs(blogArr) {
 
     blogsContainer.innerHTML = blogHTML;
 }
+
 
 function filterBlogs() {
     const filterSelect = document.getElementById("blogFilter");

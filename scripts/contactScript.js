@@ -66,7 +66,7 @@ document.getElementById("contactForm").addEventListener("submit", function (even
         formFeedback.textContent = "Submitting...";
         formFeedback.classList.add("success");
 
-        fetch("../api/contact.php", {
+        fetch("https://purepetnutrition-gjecgvaxgmgtcfcc.australiaeast-01.azurewebsites.net/api/contact.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
