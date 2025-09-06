@@ -73,7 +73,7 @@ function renderBlogs(blogArr) {
               <article class="blogCard" data-category="${item.category}">
                 <h2>${item.title}</h2>
                 <span class="badge">${item.category}</span>
-                <p>${item.description}</p>
+                <p>${item.description.split(" ").slice(0, 25).join(" ")}...</p>
               </article>
             </a>`;
         })

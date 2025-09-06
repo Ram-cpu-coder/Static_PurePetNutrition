@@ -358,7 +358,7 @@ figcaption {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 300px;
+  height: 250px;
 }
 
 .blogCard h2 {
@@ -382,6 +382,7 @@ figcaption {
   margin: 0 0 10px 0;
   flex-grow: 1;
   color: black;
+  font-size: 16px;
 }
 
 .blogMeta {
@@ -473,14 +474,26 @@ figcaption {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.productCard .productImage {
+.productCard {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
+  background: #fff;
   border-radius: 10px;
-  margin-bottom: 15px;
+  padding: 15px 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.productCard img {
+  width: 100%;
+  height: 160px;          
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 15px 0;
   filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
 }
+
 
 .productCard h2 {
   font-size: 20px;
