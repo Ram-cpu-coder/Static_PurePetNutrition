@@ -9,13 +9,15 @@ async function fetchTestimonials() {
 
         // Map product-style data into testimonial format
         testimonials = data.map(item => ({
-            text: item.description,
-            author: item.name
+            text: item.message,
+            author: item.name,
+            rating: item.rating,
+            approved: item.approved
         })).filter(t => t.text && t.author); // filter out empty entries
 
         if (testimonials.length > 0) {
             renderTestimonial(currentIndex);
-            startAutoRotation(); // 🔁 Start rotating testimonials
+            startAutoRotation();
         } else {
             displayFallback();
         }
@@ -29,13 +31,18 @@ function renderTestimonial(index) {
     const container = document.getElementById("testimonial-container");
     if (!container || testimonials.length === 0) return;
 
-    const { text, author } = testimonials[index];
+    const { text, author, rating } = testimonials[index];
+
+    // Render rating stars
+    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+
     container.innerHTML = `
-    <div class="testimonial active">
-      <p>"${text}"</p>
-      <p><strong>- ${author}</strong></p>
-    </div>
-  `;
+      <div class="testimonial active">
+        <p>"${text}"</p>
+        <p><strong>- ${author}</strong></p>
+        <p class="rating">${stars}</p>
+      </div>
+    `;
 }
 
 function nextTestimonial() {
@@ -54,7 +61,7 @@ function displayFallback() {
 function startAutoRotation() {
     setInterval(() => {
         nextTestimonial();
-    }, 5000); // ⏱ Rotate every 5 seconds
+    }, 5000); // Rotate every 5 seconds
 }
 
 document.addEventListener("DOMContentLoaded", () => fetchTestimonials());

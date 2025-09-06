@@ -16,6 +16,7 @@ document.getElementById("contactForm").addEventListener("submit", function (even
 
     let isValid = true;
 
+    // Reset error messages and styles
     nameError.textContent = "";
     emailError.textContent = "";
     messageError.textContent = "";
@@ -48,6 +49,7 @@ document.getElementById("contactForm").addEventListener("submit", function (even
         emailInput.classList.add("invalid");
         isValid = false;
     }
+
     // message validation
     if (!message) {
         messageError.textContent = "Message is required.";
@@ -59,17 +61,36 @@ document.getElementById("contactForm").addEventListener("submit", function (even
         isValid = false;
     }
 
-    // checking validation status
+    // If validation passes, send data to backend API
     if (isValid) {
         formFeedback.textContent = "Submitting...";
         formFeedback.classList.add("success");
 
-        // this is delaying for a second to simulate the submission of the form 
-        setTimeout(() => {
-            formFeedback.textContent = "Thank you! Signal (fake): Message is received by us";
-            formFeedback.classList.add("success");
-            this.reset();
-        }, 1000);
+        fetch("../api/contact.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email, message })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    formFeedback.textContent = data.message;
+                    formFeedback.classList.add("success");
+                    formFeedback.classList.remove("error");
+                    this.reset();
+                } else {
+                    formFeedback.textContent = data.message || "Something went wrong. Please try again.";
+                    formFeedback.classList.add("error");
+                    formFeedback.classList.remove("success");
+                }
+            })
+            .catch(error => {
+                console.error("Error submitting form:", error);
+                formFeedback.textContent = "Server error. Please try again later.";
+                formFeedback.classList.add("error");
+            });
     } else {
         formFeedback.textContent = "Please fix the errors above.";
         formFeedback.classList.add("error");
