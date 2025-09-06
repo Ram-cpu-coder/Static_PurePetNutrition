@@ -18,9 +18,30 @@
             <li><a href="./Blog.html">Blog</a></li>
             <li><a href="./Products.html">Products</a></li>
             <li><a href="./Testimonials.html">Testimonials</a></li>
-            <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="./Contact.html" aria-current="page">Contact</a></li>
           </ul>
         </nav>
+        <button
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          onclick="toggleNavMenu()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
       </div>
     </header>
 

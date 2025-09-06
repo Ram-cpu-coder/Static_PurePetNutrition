@@ -28,18 +28,23 @@ function closeEnlargedImage() {
 // Blog rendering from API
 async function fetchBlogs(category = "all") {
     try {
-        const response = await fetch("https://purepetnutrition-gjecgvaxgmgtcfcc.australiaeast-01.azurewebsites.net/api/blogs.php");
+        const response = await fetch(
+            "https://purepetnutrition-gjecgvaxgmgtcfcc.australiaeast-01.azurewebsites.net/api/blogs.php"
+        );
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const blogArr = await response.json();
 
-        const filteredBlogs = category === "all"
-            ? blogArr
-            : blogArr.filter(blog => blog.category === category);
+        const filteredBlogs =
+            category === "all"
+                ? blogArr
+                : blogArr.filter((blog) => blog.category === category);
 
-        const validBlogs = filteredBlogs.filter(item =>
-            item.name && item.description &&
-            !item.name.toLowerCase().includes("dfgh") &&
-            !item.description.toLowerCase().includes("fdgh")
+        const validBlogs = filteredBlogs.filter(
+            (item) =>
+                item.title &&
+                item.description &&
+                !item.title.toLowerCase().includes("dfgh") &&
+                !item.description.toLowerCase().includes("fdgh")
         );
 
         renderBlogs(validBlogs);
@@ -56,17 +61,29 @@ function renderBlogs(blogArr) {
     const blogsContainer = document.getElementById("blogsContainer");
     if (!blogsContainer) return;
 
-    const blogHTML = blogArr.map((item) => {
-        return `<a href="https://dev.to/" aria-label="Read more about ${item.name}">
-      <article class="blogCard" data-category="${item.category}">
-        <img src="${item.image}" alt="${item.name}" class="blogThumbnail" />
-        <h2>${item.name}</h2>
-        <span class="badge">${item.category}</span>
-        <p>${item.description}</p>
-        <p class="blogMeta">Published on ${new Date(item.created_at).toLocaleDateString()}</p>
-      </article>
-    </a>`;
-    }).join("");
+    if (!blogArr.length) {
+        blogsContainer.innerHTML = `<p>No blogs found for this category.</p>`;
+        return;
+    }
+
+    const blogHTML = blogArr
+        .map((item) => {
+            return `
+            <a href="blog.html?id=${item.id}" aria-label="Read more about ${item.title}">
+              <article class="blogCard" data-category="${item.category}">
+                <img src="${item.image ?? "https://via.placeholder.com/300x200?text=No+Image"
+                }" alt="${item.title}" class="blogThumbnail" />
+                <h2>${item.title}</h2>
+                <span class="badge">${item.category}</span>
+                <p>${item.description}</p>
+                <p class="blogMeta">Published on ${item.created_at
+                    ? new Date(item.created_at).toLocaleDateString()
+                    : "Unknown date"
+                }</p>
+              </article>
+            </a>`;
+        })
+        .join("");
 
     blogsContainer.innerHTML = blogHTML;
 }
